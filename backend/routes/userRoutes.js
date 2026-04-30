@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/authMiddleware');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 const {
   getUserByUsername,
   updateProfile,
@@ -13,6 +13,6 @@ router.get('/search', searchUsers);
 router.get('/:username', getUserByUsername);
 
 // Protected routes
-router.put('/profile', protect, upload.single('avatar'), updateProfile);
+router.put('/profile', protect, upload.single('avatar'), uploadToCloudinary, updateProfile);
 
 module.exports = router;

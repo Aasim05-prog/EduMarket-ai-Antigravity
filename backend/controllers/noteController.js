@@ -110,10 +110,10 @@ const createNote = async (req, res) => {
 
     if (req.files) {
       if (req.files.thumbnail && req.files.thumbnail[0]) {
-        thumbnail = `/uploads/${req.files.thumbnail[0].filename}`;
+        thumbnail = req.files.thumbnail[0].cloudinaryUrl || req.files.thumbnail[0].path || '';
       }
       if (req.files.file && req.files.file[0]) {
-        fileUrl = `/uploads/${req.files.file[0].filename}`;
+        fileUrl = req.files.file[0].cloudinaryUrl || req.files.file[0].path || '';
       }
     }
 
@@ -188,10 +188,10 @@ const updateNote = async (req, res) => {
     // Handle file updates
     if (req.files) {
       if (req.files.thumbnail && req.files.thumbnail[0]) {
-        updates.thumbnail = `/uploads/${req.files.thumbnail[0].filename}`;
+        updates.thumbnail = req.files.thumbnail[0].cloudinaryUrl || req.files.thumbnail[0].path || '';
       }
       if (req.files.file && req.files.file[0]) {
-        updates.fileUrl = `/uploads/${req.files.file[0].filename}`;
+        updates.fileUrl = req.files.file[0].cloudinaryUrl || req.files.file[0].path || '';
       }
     }
 

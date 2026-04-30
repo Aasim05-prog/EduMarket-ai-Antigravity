@@ -36,14 +36,10 @@ app.use(cors({
   credentials: true,
 }));
 
-// Ensure uploads directory exists
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
+// Removed local static uploads serving as we now use Cloudinary
 
-// Make uploads folder static to serve thumbnails and PDFs
-app.use('/uploads', express.static(uploadsDir));
+// Keep-alive route for Render
+app.get('/ping', (req, res) => res.status(200).send('pong'));
 
 const server = http.createServer(app);
 

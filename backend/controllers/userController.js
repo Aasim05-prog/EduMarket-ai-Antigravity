@@ -43,9 +43,9 @@ const updateProfile = async (req, res) => {
       }
     }
 
-    // Handle avatar file upload
+    // Handle avatar file upload (Cloudinary)
     if (req.file) {
-      updates.avatar = `/uploads/${req.file.filename}`;
+      updates.avatar = req.file.cloudinaryUrl || req.file.path || '';
     }
 
     const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true })

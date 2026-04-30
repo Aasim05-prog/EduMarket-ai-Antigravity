@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/authMiddleware');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 const {
   getAllNotes,
   getNoteById,
@@ -32,6 +32,7 @@ router.post(
     { name: 'thumbnail', maxCount: 1 },
     { name: 'file', maxCount: 1 },
   ]),
+  uploadToCloudinary,
   createNote
 );
 
@@ -42,6 +43,7 @@ router.put(
     { name: 'thumbnail', maxCount: 1 },
     { name: 'file', maxCount: 1 },
   ]),
+  uploadToCloudinary,
   updateNote
 );
 
