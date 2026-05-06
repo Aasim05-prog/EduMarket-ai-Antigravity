@@ -60,8 +60,8 @@ const ResetPassword = () => {
   return (
     <section className="section flex items-center justify-center min-h-screen relative" style={{ paddingTop: '6vh' }}>
       {/* Decorative blobs */}
-      <div style={{ position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(16,185,129,0.06), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+      <div className="auth-blob" style={{ position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+      <div className="auth-blob" style={{ position: 'absolute', bottom: '10%', right: '10%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(16,185,129,0.06), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
       <div className="card animate-bounce-in" style={{ width: '100%', maxWidth: '460px', padding: 'var(--space-10)' }}>
         {/* Logo */}

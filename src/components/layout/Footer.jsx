@@ -8,7 +8,7 @@ const Footer = () => {
       background: '#fff',
       padding: 'var(--space-12) 0 var(--space-8)'
     }}>
-      <div className="container grid grid-4 gap-8" style={{ paddingBottom: 'var(--space-8)' }}>
+      <div className="container grid grid-4 gap-8 footer-grid" style={{ paddingBottom: 'var(--space-8)' }}>
         <div className="flex flex-col gap-4">
           <Link to="/" className="text-xl font-extrabold text-gradient" style={{ letterSpacing: '-0.5px' }}>
             EduMarket
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container flex items-center justify-between" style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 'var(--space-6)', marginTop: 'var(--space-4)' }}>
+      <div className="container flex items-center justify-between footer-bottom" style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 'var(--space-6)', marginTop: 'var(--space-4)' }}>
         <p className="text-muted text-sm">© {new Date().getFullYear()} EduMarket. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#" className="text-muted hover:text-accent" style={{ transition: 'color var(--transition-fast)' }}>

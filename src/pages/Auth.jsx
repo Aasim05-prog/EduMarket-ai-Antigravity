@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { EDUCATION_LEVELS } from '../data/mockData';
@@ -27,11 +27,12 @@ const Auth = () => {
   // Get the redirect path (where user came from)
   const from = location.state?.from || '/';
 
-  // Redirect if already logged in
-  if (isAuthenticated) {
-    navigate(from, { replace: true });
-    return null;
-  }
+  // Redirect if already logged in (must be in useEffect, not during render)
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, from, navigate]);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -107,11 +108,11 @@ const Auth = () => {
     <section className="section flex items-center justify-center min-h-screen relative" style={{ paddingTop: '6vh' }}>
       
       {/* Decorative elements */}
-      <div style={{ position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }}></div>
-      <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(16,185,129,0.06), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }}></div>
+      <div className="auth-blob" style={{ position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }}></div>
+      <div className="auth-blob" style={{ position: 'absolute', bottom: '10%', right: '10%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(16,185,129,0.06), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }}></div>
       
       <div className="container flex justify-center z-10 w-full animate-bounce-in">
-        <div className="card" style={{ width: '100%', maxWidth: '460px', padding: 'var(--space-8)' }}>
+        <div className="card auth-card" style={{ width: '100%', maxWidth: '460px', padding: 'var(--space-8)' }}>
           
           <div className="text-center mb-8">
             <Link to="/" className="inline-block mb-6">

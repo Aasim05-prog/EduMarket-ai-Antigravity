@@ -70,7 +70,7 @@ const Home = () => {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center justify-center gap-8 mt-12 pt-8" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+          <div className="flex items-center justify-center gap-8 mt-12 pt-8 hero-stats" style={{ borderTop: '1px solid var(--border-subtle)' }}>
             <div className="flex flex-col">
               <span className="font-black text-3xl text-gradient">50K+</span>
               <span className="text-sm text-muted font-medium mt-1">Notes Shared</span>
@@ -160,7 +160,7 @@ const Home = () => {
               <h2 className="section-title">Democratizing <span className="text-gradient">Education</span></h2>
             </div>
             
-            <div className="grid grid-2 gap-8" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+            <div className="grid grid-2 gap-8 vision-grid" style={{ maxWidth: '1000px', margin: '0 auto' }}>
               {[
                 { icon: '🎯', title: 'Equal Access', desc: 'Every student deserves quality study material regardless of their location or financial background. EduMarket bridges this gap.' },
                 { icon: '🤝', title: 'Peer Learning', desc: 'The best notes often come from students who just mastered the topic. We empower peer-to-peer knowledge sharing.' },
@@ -186,7 +186,7 @@ const Home = () => {
           <div className="relative z-10">
             <h2 className="font-black text-4xl mb-6 text-gradient">Ready to share your knowledge?</h2>
             <p className="text-muted text-lg max-w-2xl mx-auto mb-8 font-medium">Upload your notes today and let our AI do the magic. Digitalize, price, and publish — all in minutes.</p>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 cta-buttons">
               <Link to="/upload" className="btn btn-primary btn-xl animate-pulse-glow" onClick={handleUploadClick}>
                 {isAuthenticated ? 'Upload Notes' : 'Sign in to Upload'}
               </Link>

@@ -1642,3 +1642,327 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: rotate(360deg); }
 }
 .animate-spin { animation: spin 1s linear infinite; }
+
+/* ════════════════════════════════════════════════════════════
+   49. COMPREHENSIVE RESPONSIVE — MOBILE / TABLET
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape (≤1024px) ──────────────────────────── */
+@media (max-width: 1024px) {
+  /* Footer: 4-col → 2-col */
+  .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Note detail sidebar: narrower */
+  .note-detail-sidebar { max-width: 300px !important; }
+
+  /* Upload step connectors: shorter */
+  .upload-step::after { width: 28px; }
+
+  /* Hero stats: smaller gap */
+  .hero-stats { gap: var(--space-6) !important; }
+}
+
+/* ── Tablet Portrait (≤768px) ────────────────────────────── */
+@media (max-width: 768px) {
+  /* ── Typography Scale Down ── */
+  :root {
+    --text-5xl: 2.25rem;
+    --text-6xl: 2.75rem;
+    --text-7xl: 3rem;
+  }
+
+  /* ── Section & Container ── */
+  .section {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+  .section-sm {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  /* ── Navbar ── */
+  .navbar-notification-dropdown {
+    width: 300px !important;
+    right: -60px !important;
+  }
+
+  /* ── Footer: 2-col → 1-col ── */
+  .footer-grid { grid-template-columns: 1fr !important; gap: var(--space-6) !important; }
+  .footer-bottom { flex-direction: column !important; gap: var(--space-3) !important; text-align: center; }
+
+  /* ── Hero Section ── */
+  .hero-stats {
+    flex-direction: column !important;
+    gap: var(--space-4) !important;
+    align-items: center !important;
+  }
+  .hero-stats > div {
+    text-align: center;
+  }
+
+  /* ── Browse Notes: sidebar → top filter bar ── */
+  .browse-layout {
+    flex-direction: column !important;
+  }
+  .browse-sidebar {
+    max-width: 100% !important;
+    width: 100% !important;
+    position: static !important;
+    top: auto !important;
+  }
+
+  /* ── Dashboard: tabs scroll ── */
+  .dashboard-tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    width: 100% !important;
+    scrollbar-width: none;
+  }
+  .dashboard-tabs::-webkit-scrollbar { display: none; }
+
+  /* ── Note Detail: stack vertically ── */
+  .note-detail-layout {
+    flex-direction: column !important;
+  }
+  .note-detail-sidebar {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .note-detail-main { min-width: 0 !important; }
+
+  /* ── Upload Wizard: hide labels ── */
+  .upload-step-label-text { display: none !important; }
+  .upload-progress-line { width: 20px !important; }
+
+  /* ── Profile Header: stack ── */
+  .profile-header-content {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .profile-header-content .avatar {
+    margin: 0 auto;
+  }
+  .profile-header-actions {
+    justify-content: center !important;
+    width: 100%;
+  }
+  .profile-stats {
+    justify-content: center !important;
+  }
+
+  /* ── CTA / Vision Grid ── */
+  .vision-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Chat Layout ── */
+  .chat-layout { position: relative; }
+  .chat-sidebar {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    z-index: 10;
+    display: none;
+    border-right: none !important;
+  }
+  .chat-sidebar.show-mobile { display: flex; }
+
+  /* ── Card hover: no transform on mobile (performance) ── */
+  .card:hover {
+    transform: none;
+  }
+
+  /* ── Button sizes ── */
+  .btn-xl {
+    padding: 0.9rem 1.75rem;
+    font-size: var(--text-sm);
+  }
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-sm);
+  }
+
+  /* ── Modal full width ── */
+  .modal {
+    max-width: calc(100vw - 2rem);
+    margin: 1rem;
+  }
+
+  /* ── Toast ── */
+  .toast {
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
+  }
+
+  /* ── Auth card padding ── */
+  .auth-card {
+    padding: var(--space-6) !important;
+  }
+
+  /* ── Notification dropdown ── */
+  .notification-dropdown {
+    width: calc(100vw - 2rem) !important;
+    max-width: 360px !important;
+    right: -10px !important;
+  }
+}
+
+/* ── Mobile (≤480px) ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --text-4xl: 1.75rem;
+    --text-5xl: 2rem;
+    --text-6xl: 2.25rem;
+    --text-3xl: 1.5rem;
+  }
+
+  /* ── Section + Container ── */
+  .section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  .container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .section-title {
+    font-size: var(--text-2xl) !important;
+  }
+  .section-subtitle {
+    font-size: var(--text-base);
+  }
+  .section-header {
+    margin-bottom: var(--space-6);
+  }
+
+  /* ── Grids ── */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4) !important;
+  }
+
+  /* ── Buttons ── */
+  .btn-xl {
+    padding: 0.75rem 1.25rem;
+    font-size: var(--text-sm);
+    width: 100%;
+  }
+  .btn-lg {
+    padding: 0.65rem 1.25rem;
+    font-size: var(--text-sm);
+  }
+
+  /* ── CTA section: stack buttons ── */
+  .cta-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--space-3) !important;
+  }
+
+  /* ── Cards: reduce padding ── */
+  .card {
+    border-radius: var(--border-radius-lg);
+  }
+
+  /* ── Browse filter section compact ── */
+  .browse-sidebar {
+    padding: var(--space-4) !important;
+  }
+  .browse-sidebar h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  /* ── Dashboard stats grid ── */
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Upload dropzone ── */
+  .upload-dropzone {
+    padding: var(--space-8) var(--space-4) !important;
+  }
+
+  /* ── Upload step circles ── */
+  .upload-step-circle {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: var(--text-xs) !important;
+  }
+  .upload-progress-line { width: 16px !important; }
+
+  /* ── Note card thumb height ── */
+  .note-card-thumb {
+    height: 140px !important;
+  }
+
+  /* ── Note detail image ── */
+  .note-detail-image {
+    height: 200px !important;
+  }
+
+  /* ── Chat bubbles ── */
+  .chat-bubble {
+    max-width: 85%;
+  }
+
+  /* ── Price tag in review ── */
+  .price-display {
+    font-size: var(--text-4xl) !important;
+  }
+
+  /* ── Profile avatar ── */
+  .profile-avatar {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 1.5rem !important;
+  }
+
+  /* ── Notification dropdown mobile full-width ── */
+  .notification-dropdown {
+    position: fixed !important;
+    left: var(--space-3) !important;
+    right: var(--space-3) !important;
+    top: 70px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* ── Auth decorative blobs: hide on small screens ── */
+  .auth-blob { display: none !important; }
+
+  /* ── Footer ── */
+  .footer-grid { gap: var(--space-4) !important; }
+}
+
+/* ── Touch-friendly hover states ─────────────────────────── */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+    border-color: var(--border-subtle);
+  }
+  .btn:hover::after { opacity: 0; }
+  .btn-primary:hover { transform: none; }
+  .btn-secondary:hover { transform: none; }
+  .btn-outline:hover { transform: none; }
+}
+
+/* ── Safe area for notched phones ─────────────────────────── */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

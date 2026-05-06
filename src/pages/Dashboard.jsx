@@ -83,7 +83,7 @@ const Dashboard = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid gap-6 mb-12" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+      <div className="grid gap-6 mb-12 dashboard-stats" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
         {[
           { label: 'Notes Uploaded', value: myNotes.length || (user?.notesUploaded || 0), gradient: 'text-gradient', icon: '📤', color: 'rgba(108, 99, 255, 0.06)', border: '#6C63FF' },
           { label: 'Notes Purchased', value: purchasedList.length || purchasedNotes.length, gradient: 'text-gradient-teal', icon: '📥', color: 'rgba(16, 185, 129, 0.06)', border: '#10B981' },
@@ -103,7 +103,7 @@ const Dashboard = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-8 p-1 rounded-xl" style={{ background: 'var(--bg-elevated)', display: 'inline-flex', width: 'auto' }}>
+      <div className="flex gap-1 mb-8 p-1 rounded-xl dashboard-tabs" style={{ background: 'var(--bg-elevated)', display: 'inline-flex', width: 'auto' }}>
         {[
           { id: 'uploaded', label: '📤 My Uploaded Notes', count: myNotes.length },
           { id: 'purchased', label: '📥 My Purchased Notes', count: purchasedList.length || purchasedNotes.length },

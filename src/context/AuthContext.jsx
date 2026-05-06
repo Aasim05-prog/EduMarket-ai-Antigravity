@@ -18,37 +18,56 @@ export const AuthProvider = ({ children }) => {
 
   // Load user from localStorage on mount
   useEffect(() => {
-    try {
-      const savedUser = localStorage.getItem('edumarket_user');
-      const savedPurchases = localStorage.getItem('edumarket_purchases');
-      const savedUploads = localStorage.getItem('edumarket_uploads');
+    const initAuth = async () => {
+      try {
+        const savedUser = localStorage.getItem('edumarket_user');
+        const savedPurchases = localStorage.getItem('edumarket_purchases');
+        const savedUploads = localStorage.getItem('edumarket_uploads');
 
-      if (savedUser) {
-        const parsed = JSON.parse(savedUser);
-        setUser(parsed);
-        // If we have a token, verify it's still valid
-        if (parsed.token) {
-          authAPI.getMe()
-            .then(freshUser => {
+        if (savedPurchases) setPurchasedNotes(JSON.parse(savedPurchases));
+        if (savedUploads) setUploadedNotes(JSON.parse(savedUploads));
+
+        if (savedUser) {
+          const parsed = JSON.parse(savedUser);
+          setUser(parsed);
+
+          // If we have a token, verify it's still valid
+          if (parsed.token) {
+            try {
+              const freshUser = await authAPI.getMe();
               const merged = { ...parsed, ...freshUser, token: parsed.token };
               setUser(merged);
               localStorage.setItem('edumarket_user', JSON.stringify(merged));
               if (freshUser.purchasedNotes) {
                 setPurchasedNotes(freshUser.purchasedNotes);
               }
-            })
-            .catch(() => {
-              // Token expired or invalid — keep local data but clear token
-              console.warn('Token validation failed, using cached data');
-            });
+            } catch (err) {
+              // Distinguish auth errors from network errors
+              const isAuthError = err.message?.includes('Not authorized') || 
+                                  err.message?.includes('token failed') ||
+                                  err.message?.includes('token expired');
+              if (isAuthError) {
+                // Token is invalid/expired — clear session so user can re-login
+                console.warn('Token expired or invalid, clearing session');
+                setUser(null);
+                localStorage.removeItem('edumarket_user');
+                localStorage.removeItem('edumarket_purchases');
+                localStorage.removeItem('edumarket_uploads');
+                disconnectSocket();
+              } else {
+                // Network error (backend down) — keep cached data
+                console.warn('Token validation failed (network), using cached data');
+              }
+            }
+          }
         }
+      } catch (e) {
+        console.error('Failed to load user data:', e);
       }
-      if (savedPurchases) setPurchasedNotes(JSON.parse(savedPurchases));
-      if (savedUploads) setUploadedNotes(JSON.parse(savedUploads));
-    } catch (e) {
-      console.error('Failed to load user data:', e);
-    }
-    setLoading(false);
+      setLoading(false);
+    };
+
+    initAuth();
   }, []);
 
   // Persist user changes

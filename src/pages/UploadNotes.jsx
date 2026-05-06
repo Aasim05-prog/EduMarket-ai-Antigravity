@@ -187,12 +187,12 @@ const UploadNotes = () => {
               }}>
                 {step > i + 1 ? '✓' : i + 1}
               </div>
-              <span className="text-xs font-semibold" style={{ color: step >= i + 1 ? 'var(--brand-primary)' : 'var(--text-muted)' }}>
+              <span className="text-xs font-semibold upload-step-label-text" style={{ color: step >= i + 1 ? 'var(--brand-primary)' : 'var(--text-muted)' }}>
                 {label}
               </span>
             </div>
             {i < 3 && (
-              <div style={{ flex: 1, height: '3px', background: step > i + 1 ? 'var(--brand-primary)' : 'var(--border-medium)', borderRadius: '4px', transition: 'background var(--transition-base)', marginBottom: '24px' }}></div>
+              <div className="upload-progress-line" style={{ flex: 1, height: '3px', background: step > i + 1 ? 'var(--brand-primary)' : 'var(--border-medium)', borderRadius: '4px', transition: 'background var(--transition-base)', marginBottom: '24px' }}></div>
             )}
           </div>
         ))}
@@ -335,7 +335,7 @@ const UploadNotes = () => {
             {/* Price */}
             <div className="card mt-6 text-center" style={{ padding: 'var(--space-8)', background: 'rgba(108, 99, 255, 0.03)', border: '2px solid rgba(108, 99, 255, 0.15)' }}>
               <span className="text-sm text-muted uppercase tracking-wider font-bold">AI Suggested Price</span>
-              <div className="font-black text-5xl mt-3 mb-2" style={{ color: 'var(--brand-accent)' }}>₹{suggestedPrice}</div>
+              <div className="font-black text-5xl mt-3 mb-2 price-display" style={{ color: 'var(--brand-accent)' }}>₹{suggestedPrice}</div>
               <p className="text-xs text-muted">Based on pages, subject demand, and education level</p>
               <div className="flex items-center justify-center gap-4 mt-4">
                 <button className="btn btn-ghost btn-sm" onClick={() => setSuggestedPrice(p => Math.max(10, p - 10))}>- ₹10</button>

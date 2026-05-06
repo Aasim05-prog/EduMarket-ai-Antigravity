@@ -106,7 +106,7 @@ const NotificationBell = ({ socket }) => {
       </button>
 
       {open && (
-        <div className="animate-slide-down" style={{
+        <div className="animate-slide-down notification-dropdown" style={{
           position: 'absolute', top: 'calc(100% + 12px)', right: 0,
           width: '360px', maxHeight: '480px', overflowY: 'auto',
           background: '#fff', border: '1px solid var(--border-medium)',

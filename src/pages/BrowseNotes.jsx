@@ -78,10 +78,10 @@ const BrowseNotes = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-8" style={{ alignItems: 'flex-start' }}>
+      <div className="flex flex-wrap gap-8 browse-layout" style={{ alignItems: 'flex-start' }}>
         
         {/* Sidebar Filters */}
-        <aside className="card flex-shrink-0 animate-fade-in" style={{ width: '100%', maxWidth: '280px', padding: 'var(--space-6)', position: 'sticky', top: '100px' }}>
+        <aside className="card flex-shrink-0 animate-fade-in browse-sidebar" style={{ width: '100%', maxWidth: '280px', padding: 'var(--space-6)', position: 'sticky', top: '100px' }}>
           <h3 className="font-bold text-xl mb-6">Filters</h3>
           
           {/* Search */}

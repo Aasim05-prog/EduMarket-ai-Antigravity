@@ -202,9 +202,9 @@ const NoteDetail = () => {
         <span className="text-primary font-medium truncate" style={{ maxWidth: '300px' }}>{note.title}</span>
       </div>
 
-      <div className="flex flex-wrap gap-8" style={{ alignItems: 'flex-start' }}>
+      <div className="flex flex-wrap gap-8 note-detail-layout" style={{ alignItems: 'flex-start' }}>
         {/* Left: Note Preview */}
-        <div className="animate-fade-in-left" style={{ flex: 1, minWidth: '300px' }}>
+        <div className="animate-fade-in-left note-detail-main" style={{ flex: 1, minWidth: '300px' }}>
           <div className="card overflow-hidden" style={{ position: 'relative' }}>
             <img 
               src={note.thumbnail} alt={note.title}
@@ -213,6 +213,7 @@ const NoteDetail = () => {
                 filter: isPurchased ? 'none' : 'blur(6px) brightness(0.85)',
                 transition: 'filter var(--transition-slow)',
               }}
+              className="note-detail-image"
               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'; }}
             />
             {!isPurchased && (
@@ -270,7 +271,7 @@ const NoteDetail = () => {
         </div>
 
         {/* Right: Sidebar */}
-        <div className="animate-fade-in-right" style={{ width: '100%', maxWidth: '360px', flexShrink: 0 }}>
+        <div className="animate-fade-in-right note-detail-sidebar" style={{ width: '100%', maxWidth: '360px', flexShrink: 0 }}>
           {/* Purchase Card */}
           <div className="card" style={{ padding: 'var(--space-6)', position: 'sticky', top: '100px' }}>
             <div className="flex items-center justify-between mb-4">

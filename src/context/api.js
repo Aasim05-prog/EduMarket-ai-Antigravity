@@ -51,7 +51,18 @@ const apiFetch = async (endpoint, options = {}) => {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, config);
-      const data = await response.json();
+
+      // Try to parse JSON, handle non-JSON responses gracefully
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error(
+          response.ok
+            ? 'Unexpected server response'
+            : `Server error (${response.status})`
+        );
+      }
 
       if (!response.ok) {
         throw new Error(data.message || 'Something went wrong');
@@ -60,12 +71,17 @@ const apiFetch = async (endpoint, options = {}) => {
       return data;
     } catch (error) {
       lastError = error;
-      // Only retry on network errors, not on API errors
-      if (error.name !== 'TypeError' || attempt === retries) {
+      // Provide a user-friendly message for network errors
+      if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+        if (attempt === retries) {
+          throw new Error('Cannot connect to server. Please make sure the backend is running.');
+        }
+        // Wait before retry
+        await new Promise(r => setTimeout(r, 500 * (attempt + 1)));
+      } else {
+        // API/business errors — don't retry
         throw error;
       }
-      // Wait before retry
-      await new Promise(r => setTimeout(r, 500 * (attempt + 1)));
     }
   }
   throw lastError;
